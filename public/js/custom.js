@@ -1,4 +1,57 @@
 $(document).ready( function () {
+    $("form[name='person_form']").validate({
+        // Specify validation rules
+        rules: {
+            name: "required",
+            country_id: {
+                required: true,
+                number: true
+            },
+            city_id: {
+                required: true,
+                number: true
+            },
+            'lang_skills_id[]': {
+                required: true,
+            },
+            dob: {
+                required: true,
+                date: true
+            },
+            resume_file: {
+                required: function(element){
+                    if($('#id').length > 0){
+                        return false;
+                    }
+                    else{
+                        return true;   
+                    }
+                },
+                accept: "doc, pdf"
+            }
+        },
+        // Specify validation error messages
+        messages: {
+          name: "Please insert name",
+          country_id : "Please Select Country",  
+          city_id : "Please Select City",      
+          'lang_skills_id[]' : "Please Select atleast one language",  
+          dob : "Please give your Date of Birth",  
+          resume_file : "Please upload your file in doc or pdf format",  
+        },
+        errorElement : 'div',
+        errorPlacement: function(error, element) {
+            if(element.get(0).type == 'checkbox') {
+                error.insertAfter($("#checkboxDiv"));
+            }
+            else{
+                error.insertAfter(element);
+            }
+        },
+        submitHandler: function(form) {
+          form.submit();
+        }
+    });
     setTimeout(function(){
         if ($('#success_div').length > 0) {
             $('#success_div').hide();
@@ -16,12 +69,17 @@ function getPersons(){
             processing: '<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span>',
         },
         destroy: true,
+        autoWidth: false,
         searching: false,
         ajax: {
             url: "get_persons",
             type: 'GET',
         },
-        
+        "columnDefs": [
+            { "orderable": false, "targets": 0 },
+            { "orderable": false, "targets": 4 },
+            { "orderable": false, "targets": 7 }
+        ],
         columns:[
                     { data: 'DT_RowIndex', name: 'DT_RowIndex',searchable: false },
                     { data: 'name', name: 'name' },
@@ -71,9 +129,7 @@ function getCitiesByCountry(city_id =""){
     });   
 }
 
-
 function deletePerson(id){
-
     var txt;
     var r = confirm("Are you sure want to delete ?");
     if (r == true) {
@@ -88,5 +144,4 @@ function deletePerson(id){
             alert(data);
         });
     }
-   
 }

@@ -3,24 +3,11 @@
 namespace App\Services;
 
 use App\Models\Person;
-// use App\Services\AuthorService;
-// use App\Services\CustomerLogService;
-// use App\Services\CustomerService;
-// use App\Response\SaveResponse;
-// use App\Response\ListResponse;
-// use App\Validation\NewsValidate;
-// use Illuminate\Support\Facades\Validator;
 use DB;
 
 class PersonService
 {
-   
-    public function __construct()
-    {
-    }
-
-    public function savePerson($request)
-    {      
+    public function savePerson($request){      
         if($request->input('id')){
             $person = Person::find($request->input('id'));
             $message = "Person Updated Successfully.";

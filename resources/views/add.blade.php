@@ -15,57 +15,49 @@
 	        {{ session()->get('success') }}
 	    </div>
 		@endif
-    	<form method="post" action="{{URL::to('save_person')}}" enctype="multipart/form-data">
+    	<form method="post" name="person_form" action="{{URL::to('save_person')}}" enctype="multipart/form-data">
     		@csrf
 			<div class="form-group">
 				<label for="exampleInputEmail1" class="font-weight-bold">Name *</label>
-				<input type="text" class="form-control" id="name" name="name" value="{{Request::old('name')}}" placeholder="Enter Name">
+				<input type="text" class="form-control @error('name')error @enderror" id="name" name="name" value="{{Request::old('name')}}" placeholder="Enter Name">
 				@error('name')
-				<div class="alert alert-danger" role="alert">
-					{{ $message }}
-				</div>
+				<div class="error">{{ $message }}</div>
 				@enderror
 			</div>
 
 			<div class="form-group">
 				<label for="exampleInputEmail1" class="font-weight-bold">Country *</label>
-				<select class="form-control" id="country_id" name="country_id" onchange="getCitiesByCountry();">
+				<select class="form-control @error('country_id')error @enderror" id="country_id" name="country_id" onchange="getCitiesByCountry();">
 					<option value="">Select Country</option>
 					@foreach($countries as $country)
 					<option value="{{$country->id}}" <?php if(Request::old('country_id')== $country->id) echo "selected"; ?>>{{$country->name}}</option>
 					@endforeach
 				</select>
 				@error('country_id')
-				<div class="alert alert-danger" role="alert">
-					{{ $message }}
-				</div>
+				<div class="error">{{ $message }}</div>
 				@enderror
 			</div>
  			
  			<div class="form-group">
 				<label for="exampleInputEmail1" class="font-weight-bold">City *</label>
-				<select class="form-control" id="city_id" name="city_id">
+				<select class="form-control @error('city_id')error @enderror" id="city_id" name="city_id">
 					<option value="">Select City</option>
 				</select>
 				@error('city_id')
-				<div class="alert alert-danger" role="alert">
-					{{ $message }}
-				</div>
+				<div class="error">{{ $message }}</div>
 				@enderror
 			</div>
 			
 			<div class="form-group">
 				<label for="exampleInputEmail1" class="font-weight-bold">Language Skills *</label>
-				<div class="row no-gutters">
+				<div class="row no-gutters" id="checkboxDiv">
 					@foreach($lang_skills as $lang)
 					<input type="checkbox" class="mr-2" id="{{$lang->id}}" name="lang_skills_id[]" value="{{$lang->id}}" <?php if(null!==Request::old('lang_skills_id') && in_array($lang->id,Request::old('lang_skills_id'))) echo "checked"; ?>>
 					<label class="form-check-label mr-2" for="inlineCheckbox1" style="margin-top: -6px;">{{$lang->language}}</label>
 					@endforeach
 				</div>
 				@error('lang_skills_id')
-				<div class="alert alert-danger" role="alert">
-					{{ $message }}
-				</div>
+				<div class="error">{{ $message }}</div>
 				@enderror
 			</div>
 
@@ -73,26 +65,20 @@
 
 			<div class="form-group">
 				<label for="exampleInputEmail1" class="font-weight-bold">Date of Birth *</label>
-				<input type="date" class="form-control" id="dob" name="dob" value="{{Request::old('dob')}}" placeholder="Date of Birth">
+				<input type="date" class="form-control @error('lang_skills_id')error @enderror" id="dob" name="dob" value="{{Request::old('dob')}}" placeholder="Date of Birth" max="<?php echo date('Y-m-d'); ?>">
 				@error('dob')
-				<div class="alert alert-danger" role="alert">
-					{{ $message }}
-				</div>
+				<div class="error">{{ $message }}</div>
 				@enderror
 			</div>
 
 
 			<div class="form-group">
 				<label for="exampleInputEmail1" class="font-weight-bold">Resume File *</label>
-				<div class="custom-file">
-					<input type="file" class="custom-file-input" id="resume_file" name="resume_file" value="{{Request::old('resume_file')}}">
-					<label class="custom-file-label" for="customFile">Resume Upload</label>
-					@error('resume_file')
-					<div class="alert alert-danger" role="alert">
-						{{ $message }}
-					</div>
-					@enderror
-				</div>
+				<br>
+				<input type="file" class="@error('resume_file')error @enderror"  id="resume_file" name="resume_file" value="{{Request::old('resume_file')}}">
+				@error('resume_file')
+				<div class="error">{{ $message }}</div>
+				@enderror
 			</div>
 
 			<div class="d-flex justify-content-end" >

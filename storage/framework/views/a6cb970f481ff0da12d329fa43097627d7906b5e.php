@@ -15,14 +15,14 @@
                 border-color: #ff0000;
             }
         </style>
-        @yield('page_css')
-        @yield('page_head_js')
+        <?php echo $__env->yieldContent('page_css'); ?>
+        <?php echo $__env->yieldContent('page_head_js'); ?>
 
-        <title>@yield('page_title', 'Person | Homepage') </title>
+        <title><?php echo $__env->yieldContent('page_title', 'Person | Homepage'); ?> </title>
     </head>
     <body>
         <div class="container-fluid pt-4 pb-2">
-            @yield('main_container', 'Home Page')  
+            <?php echo $__env->yieldContent('main_container', 'Home Page'); ?>  
         </div>
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -33,10 +33,10 @@
         <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js"></script> -->
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/additional-methods.min.js"></script>
-        <script src="{{URL::to('js/all.min.js') }}" ></script>
+        <script src="<?php echo e(URL::to('js/all.min.js')); ?>" ></script>
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-        <script src="{{URL::to('js/custom.js') }}" ></script>
-        @yield('page_bottom_js')
+        <script src="<?php echo e(URL::to('js/custom.js')); ?>" ></script>
+        <?php echo $__env->yieldContent('page_bottom_js'); ?>
   </body>
 
-</html>
+</html><?php /**PATH /var/www/html/mat_laravel/resources/views/layout/master.blade.php ENDPATH**/ ?>

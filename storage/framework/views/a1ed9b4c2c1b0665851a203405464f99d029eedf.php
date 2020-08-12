@@ -1,6 +1,4 @@
-@extends('layout.master')
-
-@section('main_container')
+<?php $__env->startSection('main_container'); ?>
 <h4><b>List Page</b></h4>
 <div class="container-fluid pt-4 pb-2" style="background: #eee;">
     <div class="container-fluid p-3" style="background: #FFFFFF;box-shadow: 0 4px 20px 0 rgba(0,0,0,.14);">
@@ -10,15 +8,16 @@
                 <h5>Informations</h5>
             </div>
             <div class="col-2">
-                <a href="{{URL::to('add')}}" class="btn btn-success float-right">Add Page</a>
+                <a href="<?php echo e(URL::to('add')); ?>" class="btn btn-success float-right">Add Page</a>
             </div>
         </div>
 
-        @if(session()->has('success'))
+        <?php if(session()->has('success')): ?>
         <div class="alert alert-success" id="success_div">
-            {{ session()->get('success') }}
+            <?php echo e(session()->get('success')); ?>
+
         </div>
-        @endif
+        <?php endif; ?>
         <table class="display" id="person_table">
             <thead>
                 <tr>
@@ -49,4 +48,5 @@
         color: green;
     }
 </style>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/mat_laravel/resources/views/index.blade.php ENDPATH**/ ?>

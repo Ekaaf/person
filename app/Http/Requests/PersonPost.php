@@ -25,13 +25,16 @@ class PersonPost extends FormRequest
     {   
         $rules = [
             'name' => 'required',
-            'country_id' => 'required|integer',
-            'city_id' => 'required|integer',
-            'lang_skills_id' => 'required',
-            'dob' => 'date'
+            'country_id' => 'required|exists:countries,id',
+            'city_id' => 'required|exists:cities,id',
+            'lang_skills_id' => 'required|exists:lang_skills,id',
+            'dob' => 'required|date'
         ];
         if(!$this->input('id')){
             $rules['resume_file'] = 'required|mimes:doc,pdf';
+        }
+        else{
+            $rules['resume_file'] = 'mimes:doc,pdf';   
         }
         return $rules;
     }

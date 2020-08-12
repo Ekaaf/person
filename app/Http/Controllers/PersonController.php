@@ -4,14 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PersonPost;
-// use DB,Session,RecursiveDirectoryIterator,RecursiveIteratorIterator,DirectoryIterator;
-// use App\SORTING_ITERATOR;
-// use App\Code39;
-// use Datatables,Hash;
-// use App\User;
-// use App\Userright;
-// use App\Userlog;
-// use App\Help;
 use App\Models\Country;
 use App\Models\City;
 use App\Models\Lang_skill;
