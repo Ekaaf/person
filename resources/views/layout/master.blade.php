@@ -12,7 +12,7 @@
         @yield('page_css')
         @yield('page_head_js')
 
-        <title>@yield('page_title', 'Material Design for Bootstrap | Homepage') </title>
+        <title>@yield('page_title', 'Person | Homepage') </title>
     </head>
     <body>
         <div class="container-fluid pt-4 pb-2">

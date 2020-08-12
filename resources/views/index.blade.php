@@ -29,7 +29,7 @@
                     <th scope="col">Language Skills</th>
                     <th scope="col">Resume</th>
                     <th scope="col">Date of Birth</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col" style="min-width: 112px;">Actions</th>
                 </tr>
             </thead>
             <tbody>

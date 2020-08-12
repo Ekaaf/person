@@ -18,7 +18,7 @@
     	<form method="post" action="{{URL::to('save_person')}}" enctype="multipart/form-data">
     		@csrf
 			<div class="form-group">
-				<label for="exampleInputEmail1">Name *</label>
+				<label for="exampleInputEmail1" class="font-weight-bold">Name *</label>
 				<input type="text" class="form-control" id="name" name="name" value="{{Request::old('name')}}" placeholder="Enter Name">
 				@error('name')
 				<div class="alert alert-danger" role="alert">
@@ -28,7 +28,7 @@
 			</div>
 
 			<div class="form-group">
-				<label for="exampleInputEmail1">Country *</label>
+				<label for="exampleInputEmail1" class="font-weight-bold">Country *</label>
 				<select class="form-control" id="country_id" name="country_id" onchange="getCitiesByCountry();">
 					<option value="">Select Country</option>
 					@foreach($countries as $country)
@@ -43,7 +43,7 @@
 			</div>
  			
  			<div class="form-group">
-				<label for="exampleInputEmail1">City *</label>
+				<label for="exampleInputEmail1" class="font-weight-bold">City *</label>
 				<select class="form-control" id="city_id" name="city_id">
 					<option value="">Select City</option>
 				</select>
@@ -55,7 +55,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="exampleInputEmail1">Language Skills *</label>
+				<label for="exampleInputEmail1" class="font-weight-bold">Language Skills *</label>
 				<div class="row no-gutters">
 					@foreach($lang_skills as $lang)
 					<input type="checkbox" class="mr-2" id="{{$lang->id}}" name="lang_skills_id[]" value="{{$lang->id}}" <?php if(null!==Request::old('lang_skills_id') && in_array($lang->id,Request::old('lang_skills_id'))) echo "checked"; ?>>
@@ -72,7 +72,7 @@
 			
 
 			<div class="form-group">
-				<label for="exampleInputEmail1">Date of Birth *</label>
+				<label for="exampleInputEmail1" class="font-weight-bold">Date of Birth *</label>
 				<input type="date" class="form-control" id="dob" name="dob" value="{{Request::old('dob')}}" placeholder="Date of Birth">
 				@error('dob')
 				<div class="alert alert-danger" role="alert">
@@ -83,7 +83,7 @@
 
 
 			<div class="form-group">
-				<label for="exampleInputEmail1">Resume File *</label>
+				<label for="exampleInputEmail1" class="font-weight-bold">Resume File *</label>
 				<div class="custom-file">
 					<input type="file" class="custom-file-input" id="resume_file" name="resume_file" value="{{Request::old('resume_file')}}">
 					<label class="custom-file-label" for="customFile">Resume Upload</label>
